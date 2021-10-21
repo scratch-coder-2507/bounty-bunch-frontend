@@ -1,0 +1,84 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="card-title">Game Category List</h3>
+                            </div>
+                            <div class="col-6">
+                                <div class="card-tools">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <select class="form-control sort-status" (change)="sortBy($event)"
+                                                name="sort">
+                                                <option value="">Select </option>
+                                                <option value="Active"> Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-sm" data-children-count="1">
+                                                <input type="text" name="table_search" class="form-control float-right"
+                                                    placeholder="Search">
+
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                    <!-- <th>Status</th>
+                                    <th>Reason</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cate of categories; let i = index">
+                                    <td width="20%">{{cate.name}}</td>
+                                    <td width="60%">{{cate.description}}</td>
+                                    <td width="20%" style="display: inline-grid;">
+                                        <!-- <button type="button" class="btn btn-danger btn-sm"
+                                            (click)="deleteCategory(cate._id)">Delete</button> -->
+                                            <button class="btn btn-success btn-sm" (click)="editGameCategory(cate)"
+                                            title="Edit"><i class="nav-icon fas fa-pencil-alt"></i></button>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-switch" data-children-count="1"
+                                                    title="enable/disable user">
+                                                    <input type="checkbox" class="custom-control-input"
+                                                        [(ngModel)]="cate.enable" name="cateEnable{{i}}"
+                                                        id="cateEnable{{i}}" (change)="enableDisableGameCategory(cate)">
+                                                    <label for="cateEnable{{i}}" *ngIf="cate.enable"
+                                                        class="custom-control-label">Disable</label>
+                                                    <label for="cateEnable{{i}}" *ngIf="!cate.enable"
+                                                        class="custom-control-label">Enable</label>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>

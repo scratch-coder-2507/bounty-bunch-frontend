@@ -1,0 +1,104 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Game List Creation</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form [formGroup]="editGameForm" (ngSubmit)="editGameList()">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <div class="form-group" data-children-count="1">
+                                    <label>Select Game Category</label>
+                                    <select class="form-control" formControlName="gameCategory" [attr.disabled] = "true">
+                                        <option value="{{catName}}">{{catName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>Game Name</label>
+                                <input type="text" class="form-control" placeholder="Game Name"
+                                    formControlName="gameName" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1" [attr.disabled] = "true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" data-children-count="1">
+                        <label>Game Description</label>
+                        <textarea class="form-control" rows="3" placeholder="Game Description"
+                            formControlName="description"></textarea>
+                    </div>
+                    <div class="form-group" data-children-count="1">
+                        <label>Game URL/Identifier/BundleId</label>
+                        <input type="text" class="form-control" placeholder="Game URL/Identifier/BundleId"
+                            formControlName="bundleIdentifier" data-kwimpalastatus="alive"
+                            data-kwimpalaid="1628443580540-1">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Game Icon</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile"
+                                            formControlName="icon">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <div class="custom-control custom-switch" data-children-count="1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1"
+                                        formControlName="freeType">
+                                    <label class="custom-control-label" for="customSwitch1">Free</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch" data-children-count="1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch2"
+                                        formControlName="paidType">
+                                    <label class="custom-control-label" for="customSwitch2">Paid</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <div class="custom-control custom-switch" data-children-count="1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch3"
+                                        formControlName="singlePlayer">
+                                    <label class="custom-control-label" for="customSwitch3">Single Player</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-switch" data-children-count="1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch4"
+                                        formControlName="multiPlayer">
+                                    <label class="custom-control-label" for="customSwitch4">Multi Player</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-default" (click) = "onCancel()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

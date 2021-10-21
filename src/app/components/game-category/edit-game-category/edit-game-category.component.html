@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Game Category Creation</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form [formGroup]="gameCategoryForm" (ngSubmit)="editCategory()">
+                <div class="card-body">
+                    <div class="form-group" data-children-count="1">
+                        <label>Game Category Name</label>
+                        <input type="text" class="form-control" placeholder="Category Name"
+                            formControlName="categoryName" data-kwimpalastatus="alive" data-kwimpalaid="1628443580540-1"
+                            [attr.disabled]="true">
+                    </div>
+                    <div class="form-group" data-children-count="1">
+                        <label>Game Category Description</label>
+                        <textarea class="form-control" rows="3" placeholder="Category Description"
+                            formControlName="description"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Category Icon</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile"
+                                            formControlName="icon">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.card-body -->
+
+
+    </div>
+</div>

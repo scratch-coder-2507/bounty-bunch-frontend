@@ -1,0 +1,136 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="card-title">Sub-Admin List</h3>
+                            </div>
+                            <div class="col-6">
+                                <div class="card-tools">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <select class="form-control sort-status" (change)="sortBy($event)"
+                                                name="sort">
+                                                <option value="">Select </option>
+                                                <option value="Active"> Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-sm" data-children-count="1">
+                                                <input type="text" name="table_search" class="form-control float-right"
+                                                    placeholder="Search">
+
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">UserName</th>
+                                    <th scope="col">Mobile Number</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Module Access</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let admin of subAdmins;let i = index">
+                                    <td>{{admin.fullName}}</td>
+                                    <td>{{admin.userName}}</td>
+                                    <td>{{admin.phoneNumber}}</td>
+                                    <td>{{admin.email}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" *ngFor="let module of moduleAccess">
+                                            {{module}}
+                                        </button><br>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" data-toggle="modal" title="ViewLogs"
+                                            data-target="#modal-default" (click)="viewLogs(admin._id)"><i
+                                                class="nav-icon fas fa-eye"></i></button>
+                                        <button style="margin-left: 5px;" class="btn btn-success btn-sm"
+                                            (click)="editSubAdmin(admin)" title="Edit"><i
+                                                class="nav-icon fas fa-pencil-alt"></i></button>
+                                        <!-- <button class="btn btn-danger btn-sm" *ngIf = "!enable" (click)="deleteSubAdmin(admin._id)"><i class="nav-icon fas fa-user-slash"></i></button>
+                                        <button class="btn btn-warning btn-sm" *ngIf = "enable" (click)="enableSubAdmin(admin._id)"><i class="nav-icon fas fa-user"></i></button> -->
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch" data-children-count="1"
+                                                title="enable/disable user">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    [(ngModel)]="admin.enable" name="adminEnable{{i}}"
+                                                    id="adminEnable{{i}}" (change)="enableDisableSubAdmin(admin)">
+                                                <label for="adminEnable{{i}}" *ngIf="admin.enable"
+                                                    class="custom-control-label">Disable</label>
+                                                <label for="adminEnable{{i}}" *ngIf="!admin.enable"
+                                                    class="custom-control-label">Enable</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="modal-default">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">User Logs</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table table-head-fixed text-nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>First Login</th>
+                                                            <th>Log In</th>
+                                                            <th>Log Out</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let data of logs">
+                                                            <td>{{data.lastLoginDate | date: 'short'}}</td>
+                                                            <td>{{data.logIn | date: 'short'}}</td>
+                                                            <td>{{data.logOut | date: 'short'}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Close</button>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>

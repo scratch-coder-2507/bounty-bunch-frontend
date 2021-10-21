@@ -1,0 +1,430 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Tournament Creation</h3>
+            </div>
+
+            <form (ngSubmit)="createTournment()">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>Game Name</label>
+                                <input type="text" class="form-control" placeholder="Game Name"
+                                    [(ngModel)]="tournment.gameName" data-kwimpalastatus="alive" name="gameName"
+                                    data-kwimpalaid="1628443580540-3">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="2">
+                                <label>Game Type</label>
+                                <select class="form-control" (change)="onChangeSection($event)"
+                                    [(ngModel)]="tournment.section" name="section">
+                                    <option value="">Select </option>
+                                    <option value="Tournment"> Tournament</option>
+                                    <option value="Live">Live</option>
+                                    <option value="Demo">Demo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6" *ngIf="sectionType === 'Tournment'">
+                            <div class="form-group" data-children-count="1">
+                                <label>Tournament Type</label>
+                                <select class="form-control" [(ngModel)]="tournment.tournmentType"
+                                    (change)="onChangeTournment($event)" name="tournmentType">
+                                    <option value="">Select </option>
+                                    <option value="Fixed"> Fixed</option>
+                                    <option value="TimePeriod">TimePeriod</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>Tournament Name</label>
+                                <input type="text" class="form-control" placeholder="Table Name" name="tableName"
+                                    [(ngModel)]="tournment.tableName" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Tournament Image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control" id="exampleInputFile"
+                                            [(ngModel)]="tournment.tableImage" name="tableImage">
+                                        <!-- <label class="custom-file-label" for="exampleInputFile">Choose file</label> -->
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="2">
+                                <label>Tournament Attempts</label>
+                                <select class="form-control" [(ngModel)]="tournment.attempts"
+                                    (change)="onChangeAttempts($event)" name="attempts">
+                                    <option value="">Select </option>
+                                    <option *ngIf="tournmentType !== 'Fixed'" value="Multiple"> Multiple</option>
+                                    <option *ngIf="tournmentType !== 'Fixed'" value="Unlimited">Unlimited</option>
+                                    <option value="Single">Single</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3" *ngIf="attemptsType === 'Multiple'">
+                            <div class="form-group" data-children-count="1">
+                                <label>Number of Attempts</label>
+                                <input type="text" class="form-control" placeholder="No Of Attempts"
+                                    [(ngModel)]="tournment.noOfAttempts" name="noOfAttempts" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                        <div class="col-3" *ngIf="sectionType !== 'Demo'">
+                            <div class="form-group" data-children-count="1">
+                                <label>Mode</label>
+                                <select class="form-control" [(ngModel)]="tournment.mode"
+                                    (change)="onChangeMode($event)" name="mode">
+                                    <option value="">Select </option>
+                                    <option value="Free"> Free</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Both">Both</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group" data-children-count="1">
+                                <label>Entry Fee</label>
+                                <input type="text" class="form-control" placeholder="Entry Fee"
+                                    [(ngModel)]="tournment.entryFee" name="entryFee" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                        <div class="col-4" *ngIf="sectionType !== 'Demo'">
+                            <div class="form-group" data-children-count="1">
+                                <label>Bonuses Limit</label>
+                                <input type="text" class="form-control" placeholder="Bonuses Limit (in Rs)"
+                                    [(ngModel)]="tournment.bonus" name="bonus" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group" data-children-count="1">
+                                <label>Tournament Size</label>
+                                <input type="text" class="form-control" placeholder="Tournment Size"
+                                    [(ngModel)]="tournment.tournmentSize" name="tournmentSize"
+                                    data-kwimpalastatus="alive" data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                        <!-- <div class="col-4">
+                            <div class="form-group" data-children-count="1">
+                                <label>Admin Stake %</label>
+                                <input type="text" class="form-control" placeholder="Admin Stake %"
+                                    [(ngModel)]="tournment.adminStake" name="adminStake" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-4" *ngIf="sectionType !== 'Demo'">
+                            <div class="form-group" data-children-count="1">
+                                <label>Number Of Winners</label>
+                                <input type="text" class="form-control" placeholder="No Of Winners"
+                                    [(ngModel)]="tournment.noOfWinners" name="noOfWinners" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                        <!-- *ngIf="sectionType !== 'Demo' && mode !== 'Free'" -->
+
+                        <div class="col-4">
+                            <div class="form-group" data-children-count="1">
+                                <label>Winning Amount</label>
+                                <input type="text" class="form-control" placeholder="Winning Amount"
+                                    [(ngModel)]="tournment.winningAmount" name="winningAmount"
+                                    data-kwimpalastatus="alive" data-kwimpalaid="1628443580540-1" (keyup)="onEnter()">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group" data-children-count="1">
+                                <label>Winners</label><br>
+                                <button type="button" class="btn btn-default" data-toggle="modal"
+                                    data-target="#modal-default">
+                                    Click to add Prizes
+                                </button>
+                                <div class="modal fade" id="modal-default">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Prizes</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close" #closeBtn>
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Prize money for positions.</p>
+                                                <p>Winning Amount(Pool Amount): {{poolAmount}}</p>
+                                                <p>Remaining Amount: {{remainingAmount}}</p>
+                                                <form #prizeDataForm="ngForm" class="container mt-3">
+                                                    <!-- some code here - see full code at the end of this tutorial -->
+                                                    <button type="button" class="btn btn-primary btn-sm"
+                                                        (click)="addAnotherPrize()">Add Prize</button>
+                                                    <section *ngFor="let data of prizeData; let i = index;">
+                                                        <div class="row" style="margin-top: 1rem;">
+                                                            <div class="col-md-4">
+                                                                <h1 style="font-size: 18px;">Prize Category {{i + 1}}
+                                                                </h1>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button type="button" title="Remove"
+                                                                    class="btn btn-danger btn-sm"
+                                                                    (click)="removePrize(i)"><i
+                                                                        class="fas fa-trash"></i></button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- input fields inside the *ngFor -->
+                                                        <div class="row" style="margin-top: 1rem;">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group" data-children-count="1">
+                                                                    <label>From Position</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="0" [(ngModel)]="data.fromPosition"
+                                                                        name="fromPosition_{{i}}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group" data-children-count="1">
+                                                                    <label>To Position</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="0" [(ngModel)]="data.toPosition"
+                                                                        name="toPosition_{{i}}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group" data-children-count="1">
+                                                                    <label>Prize Amount</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Prize Amount"
+                                                                        [(ngModel)]="data.prizeAmount"
+                                                                        name="prizeAmount_{{i}}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group" data-children-count="1">
+                                                                    <label>Total Amount</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Total Amount"
+                                                                        [(ngModel)]="data.totalAmount"
+                                                                        name="totalAmount_{{i}}"
+                                                                        (click)="onEnterPrize(i)" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="savePrizeData()">Save</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>Tournament Description</label>
+                                <textarea class="form-control" rows="3" placeholder="Description"
+                                    [(ngModel)]="tournment.description" name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>Tournament Rules</label>
+                                <textarea class="form-control" rows="3" placeholder="Description"
+                                    [(ngModel)]="tournment.rules" name="rules"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="sectionType !== 'Demo'">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Registration Start Date:</label>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" [(ngModel)]="tournment.regStartDate"
+                                        name="regStartDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Registration Start time:</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" [(ngModel)]="tournment.regStartTime"
+                                        name="regStartTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Registration End Date:</label>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" [(ngModel)]="tournment.regEndDate"
+                                        name="regEndDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Registration End time:</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" [(ngModel)]="tournment.regEndTime"
+                                        name="regEndTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>Tournament Start Date:</label>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" [(ngModel)]="tournment.startDate"
+                                        name=" startDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group" data-children-count="2">
+                                <div class="form-group">
+                                    <label>Tournament Start time:</label>
+                                    <div class="form-group">
+                                        <input type="time" class="form-control" [(ngModel)]="tournment.startTime"
+                                            name="startTime">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3" *ngIf="sectionType === 'Tournment' || 'Live'  && tournmentType !== 'Fixed'">
+                            <div class="form-group">
+                                <label>Tournament End Date:</label>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" [(ngModel)]="tournment.endDate"
+                                        name="endDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3" *ngIf="sectionType === 'Tournment' || 'Live' && tournmentType !== 'Fixed'">
+                            <div class="form-group">
+                                <label>Tournament End time:</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" [(ngModel)]="tournment.endTime"
+                                        name="endTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4" *ngIf="sectionType === 'Tournment' && tournmentType === 'Fixed'">
+                            <div class="form-group" data-children-count="2">
+                                <label>Bots / Alternate Date-Time</label>
+                                <select class="form-control" [(ngModel)]="tournment.botAlternate"
+                                    (change)="onChangeBotAlternate($event)" name="attempts">
+                                    <option value="">Select </option>
+                                    <option value="">No Bots/Alternate</option>
+                                    <option value="Bots">Bots</option>
+                                    <option value="Alternate">Alternate Date - Time</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4"
+                            *ngIf="sectionType === 'Tournment' && tournmentType === 'Fixed' && botAlternateType === 'Alternate'">
+                            <div class="form-group">
+                                <label>Alternate Tournament Start Date:</label>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" [(ngModel)]="tournment.alternateDate"
+                                        name=" alternateDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4"
+                            *ngIf="sectionType === 'Tournment' && tournmentType === 'Fixed' && botAlternateType === 'Alternate'">
+                            <div class="form-group">
+                                <label>Alternate Tournament Start time:</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" [(ngModel)]="tournment.alternateTime"
+                                        name="alternateTime">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4" *ngIf="botAlternateType === 'Bots' || botAlternateType ==='Alternate'">
+                            <!-- <label>Bots</label> -->
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group" data-children-count="1">
+                                        <label>Total Bots</label>
+                                        <input type="text" class="form-control" placeholder="Total Bots"
+                                            [(ngModel)]="tournment.bots" name="bots" data-kwimpalastatus="alive"
+                                            data-kwimpalaid="1628443580540-1">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" data-children-count="1">
+                                        <label>Fair Play</label>
+                                        <input type="text" class="form-control" placeholder="Fair Play"
+                                            [(ngModel)]="tournment.fairPlay" name="fairPlay" data-kwimpalastatus="alive"
+                                            data-kwimpalaid="1628443580540-1">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group" data-children-count="1">
+                                        <label>Must Win</label>
+                                        <input type="text" class="form-control" placeholder="Must Win"
+                                            [(ngModel)]="tournment.mustWin" name="mustWin" data-kwimpalastatus="alive"
+                                            data-kwimpalaid="1628443580540-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="custom-control custom-switch" data-children-count="1">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch5"
+                                        [(ngModel)]="tournment.autoCreate" name="autoCreate">
+                                    <label class="custom-control-label" for="customSwitch5">AutoCreate</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

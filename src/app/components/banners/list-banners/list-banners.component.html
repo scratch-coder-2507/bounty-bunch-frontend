@@ -1,0 +1,55 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Banner List</h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;" data-children-count="1">
+                                <input type="text" name="table_search" class="form-control float-right"
+                                    placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Game Name</th>
+                                    <th scope="col">Banner</th>
+                                    <th scope="col">Game Category</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">GameType</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr *ngFor="let game of gameList">
+                                    <td>{{game.gameName}}</td>
+                                    <td><img src="../../../../assets/img/default-150x150.png" class="user-img"
+                                            alt="user.jpg"></td>
+                                    <td>{{game.gameCategory.name}}</td>
+                                    <td>{{game.description}}</td>
+                                    <td>{{game.type}}</td>
+                                    <td><button type="button" class="btn btn-danger btn-sm"
+                                            (click)="deleteGame(game._id)">Delete</button></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>

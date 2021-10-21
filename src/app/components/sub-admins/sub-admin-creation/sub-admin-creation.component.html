@@ -1,0 +1,88 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Sub Admin Creation</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form [formGroup]="subAdminForm" (ngSubmit)="createSubAdmin()">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label for="exampleInputEmail1">First Name</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name"
+                                    formControlName="firstName" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-3">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last Name"
+                                    formControlName="lastName" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    placeholder="Enter email" formControlName="email" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-3">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label>PhoneNumber</label>
+                                <input type="number" class="form-control" placeholder="Enter PhoneNumber"
+                                    formControlName="phoneNumber" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" data-children-count="1">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password"
+                            data-kwimpalastatus="alive" data-kwimpalaid="1628443580540-1">
+                    </div>
+                    <div class="form-group" data-children-count="1">
+                        <label>UserName</label>
+                        <input type="text" class="form-control" placeholder="UserName" formControlName="userName"
+                            data-kwimpalastatus="alive" data-kwimpalaid="1628443580540-1">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="1">
+                                <label for="exampleInputPassword1">Address</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Address"
+                                    forControlName="address" data-kwimpalastatus="alive"
+                                    data-kwimpalaid="1628443580540-1">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group" data-children-count="2">
+                                <label>Module Access</label>
+                                <!-- <select class="form-control" formControlName="moduleAccess">
+                                    <option *ngFor="let game of gameList" value="{{game._id}}">{{game.gameName}}</option>
+                                </select> -->
+                                <ng-select class="form-control custom" appendTo = "body" [multiple]="true" [hideSelected]="true" formControlName = "moduleAccess">
+                                    <ng-option *ngFor="let game of gameList" value="{{game._id}}">{{game.gameName}}</ng-option>
+                                 </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

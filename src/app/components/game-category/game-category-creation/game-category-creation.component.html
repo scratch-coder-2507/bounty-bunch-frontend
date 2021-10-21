@@ -1,0 +1,83 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Game Category Creation</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form [formGroup]="gameCategoryForm" (ngSubmit)="createCategory()">
+                <div class="card-body">
+                    <div class="form-group" data-children-count="1">
+                        <label>Game Category Name</label>
+                        <input type="text" class="form-control" placeholder="Category Name"
+                            formControlName="categoryName" data-kwimpalastatus="alive"
+                            data-kwimpalaid="1628443580540-1">
+                    </div>
+                    <div class="form-group" data-children-count="1">
+                        <label>Game Category Description</label>
+                        <textarea class="form-control" rows="3" placeholder="Category Description"
+                            formControlName="description"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Category Icon</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile"
+                                            formControlName="icon">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" (click)="iconUpload()">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <!-- <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="exampleInputFile">Category Banner</label>
+                                <form #banner="ngForm" class="container mt-3">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        (click)="addAnotherBanner()">Add Banner</button>
+                                    <section *ngFor="let data of gameBanner; let i = index">
+                                        <div class="row" style="margin-top: 1rem;">
+                                            <div class="col-md-4">
+                                                <h1 style="font-size: 18px;">Banner {{i + 1}}
+                                                </h1>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    (click)="removeBanner(i)">Remove</button>
+                                            </div>
+                                        </div>
+                                        <div class="input-group" style="margin-top: 1rem;">
+                                            <div class="custom-file">
+                                                <input type="file" class="form-control" id="exampleInputFile"
+                                                    [ngModel]="data.file" name="file_{{i}}">
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" (click)="bannerUpload()">Upload</span>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div> -->
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.card-body -->
+
+
+    </div>
+</div>

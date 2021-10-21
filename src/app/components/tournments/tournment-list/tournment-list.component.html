@@ -1,0 +1,84 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="card-title">Tournment List</h3>
+                            </div>
+                            <div class="col-6">
+                                <div class="card-tools">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <select class="form-control sort-status" (change)="sortBy($event)"
+                                                name="sort">
+                                                <option value="">Select </option>
+                                                <option value="Active"> Active</option>
+                                                <option value="Inactive">Inactive</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="input-group input-group-sm" data-children-count="1">
+                                                <input type="text" name="table_search" class="form-control float-right"
+                                                    placeholder="Search">
+
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Game Name</th>
+                                    <th scope="col">Table Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Rules</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let admin of tournments; let i = index">
+                                    <td>{{admin.gameId.gameName}}</td>
+                                    <td>{{admin.tableName}}</td>
+                                    <td>{{admin.description}}</td>
+                                    <td>{{admin.rules}}</td>
+                                    <td style="display: inline-grid;">
+                                        <!-- <button class="btn btn-danger btn-sm" (click)="deleteTournment(admin._id)"><i class="nav-icon fas fa-trash"></i></button> -->
+                                        <button class="btn btn-success btn-sm" (click)="editTournment(admin)"
+                                            title="Edit"><i class="nav-icon fas fa-pencil-alt"></i></button>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch" data-children-count="1"
+                                                title="enable/disable user">
+                                                <input type="checkbox" class="custom-control-input"
+                                                    [(ngModel)]="admin.enable" name="adminEnable{{i}}"
+                                                    id="adminEnable{{i}}" (change)="enableDisableTournment(admin)">
+                                                <label for="adminEnable{{i}}" *ngIf="admin.enable"
+                                                    class="custom-control-label">Disable</label>
+                                                <label for="adminEnable{{i}}" *ngIf="!admin.enable"
+                                                    class="custom-control-label">Enable</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
